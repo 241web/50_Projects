@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+/*Harmonisation de la ligne et des cercles en fonction du 'Prev' ou 'Next'*/
+:root{
+    --line-border-fill:#3498db;
+    --line-border-empty:#e0e0e0;
+}
+
+/*Début mise en forme*/
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f6f7fb;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0; 
+}
+
+.container{
+    text-align: center;
+}
+
+.progress-container{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 30px;
+    max-width: 100%;
+    width: 350px;
+}
+
+.progress-container::before{
+    content: '';
+    background-color: var(--line-border-empty); /*en rapport avec le tout début (activ 'Prev')*/
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    z-index: -1;
+}
+
+/*Réalisation de la ligne progressive*/
+.progress{
+    background-color: var(--line-border-fill); /*en rapport avec le tout début (active 'Next')*/
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+/*Réalisation des cercles autour des chiffres*/
+*.circle{
+    background-color: #fff;
+    color: #999;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--line-border-empty);
+    transition: 00.4s ease;
+}
+
+/*Activation des cercles - couleur bleue*/
+.circle.active{
+    border-color: var(--line-border-fill);
+}
+
+/*Mise en forme des bouttons*/
+.btn{
+    background-color: var(--line-border-fill);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px 30px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+/*Activation des bouttons*/
+.btn:active{
+    transform: scale(0.98);
+}
+
+.btn:focus{
+    outline: 0;
+}
+
+/*Floutter le boutton 'Prev' si on est à '1'*/
+.btn:disabled{
+    background-color:var(--line-border-empty);
+    cursor: not-allowed;
+}
