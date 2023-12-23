@@ -1,106 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans');
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #ecf0f1;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
     height: 100vh;
+}
+
+.slider-container {
+    position: relative;
     overflow: hidden;
-    margin: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
-img {
-    max-width: 100%;
-}
-
-.card {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    width: 350px;
-}
-
-.card-header {
-    height: 200px;
-}
-
-.card-header img {
-    object-fit: cover;
-    width: 100%;
+.left-slide {
     height: 100%;
+    width: 35%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform .5S ease-in-out;
 }
 
-.card-content {
-    background-color: #fff;
-    padding: 30px;
-}
-
-.card-title {
-    height: 20px;
-    margin: 0;
-}
-
-.card-excerpt {
-    color: #777;
-    margin: 10px 0 20px;
-}
-
-.author {
-    display: flex;
-}
-
-.profil-img {
-    border-radius: 50%;
-    overflow: hidden;
-    height: 40px;
-    width: 40px;
-}
-
-.author-info {
+.left-slide > div {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-left: 10px;
-    width: 100px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }
 
-.author-info small {
-    color: #aaa;
-    margin-top: 5px;
+.left-slide h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-top: -30px;
 }
 
-.animated-bg {
-    background-image: linear-gradient(
-        to right,
-        #f6f7f8 0%,
-        #edeef1 10%,
-        #f6f7f8 20%,
-        #f6f7f8 100%
-    );
-    background-size: 200% 100%;
-    animation: bgPos 1s linear infinite;
+.right-slide {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 35%;
+    width: 65%;
+    transition: transform .5S ease-in-out;
 }
 
-.animated-bg-text {
-    border-radius: 50px;
-    display: inline-block;
-    margin: 0;
-    height: 10px;
+.right-slide > div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
     width: 100%;
 }
 
-@keyframes bgPos {
-    0% {
-        background-position: 50% 0%;
-    }
+button {
+    background-color: #fff;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 15px;
+}
 
-    100% {
-        background-position: -150% 0;
-    }
+button:hover {
+    color: #222;
+}
+
+button:focus {
+    outline: none;
+}
+
+.slider-container 
+.action-buttons button {
+    position: absolute;
+    left: 35%;
+    top: 50%;
+    z-index: 100;
+}
+
+.slider-container
+.action-buttons
+.down-button {
+    transform: translateX(-100%);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.slider-container
+.action-buttons
+.up-button {
+    transform: translateY(-100%);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

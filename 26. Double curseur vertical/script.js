@@ -1,23 +1,25 @@
-const header = document.getElementById('header')
-const title = document.getElementById('title')
-const excerpt= document.getElementById('excerpt')
-const profile_img = document.getElementById('profile_img')
-const name = document.getElementById('name')
-const date = document.getElementById('date')
+const sliderContainer = document.querySelector('.slider-container')
+const slideRight = document.querySelector('.right-slider')
+const slideLeft = document.querySelector('.left-slider')
+const upButton = document.querySelector('.up-button')
+const downButton = document.querySelector('.down-button')
+const slidesLength = slideRight.querySelectorAll('div').length
 
-const animated_bgs = document.querySelectorAll('.animated-bg')
-const animated_bg_texts = document.querySelectorAll('.animated-bg-text')
+let activeSlideIndex = 0
 
-setTimeout(getData, 2500)
+slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`
 
-function getData() {
-    header.innerHTML = '<img src="dev-renoi.jpg" alt="image du setup de developpeur.">'
-    title.innerHTML = 'Lorem ipsum dolor sit amet.'
-    excerpt.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, necessitatibus?'
-    profile_img.innerHTML = '<img src="https://randomuser.me/api/portraits/women/90.jpg" alt="">'
-    name.innerHTML = 'Suzanne A'
-    date.innerHTML = '12 mars 2023'
+upButton.addEventListener('click', () => changeSlide('up'))
+downButton.addEventListener('click', () => changeSlide('down'))
 
-    animated_bgs.forEach(bg => bg.classList.remove('animated-bg'))
-    animated_bg_texts.forEach(bg => bg.classList.remove('animated-bg-text'))
+const changeSlide = (direction) => {
+    const sliderHeight = sliderContainer.clientHeight
+    if(direction === 'up') {
+        activeSlideIndex++
+        if(activeSlideIndex > slidesLength - 1) {
+            activeSlideIndex = 0
+        }
+    }
+
+    slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`
 }
