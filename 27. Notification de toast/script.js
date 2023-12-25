@@ -1,23 +1,35 @@
-const header = document.getElementById('header')
-const title = document.getElementById('title')
-const excerpt= document.getElementById('excerpt')
-const profile_img = document.getElementById('profile_img')
-const name = document.getElementById('name')
-const date = document.getElementById('date')
+const button = document.getElementById('button')
+const toasts = document.getElementById('toasts')
 
-const animated_bgs = document.querySelectorAll('.animated-bg')
-const animated_bg_texts = document.querySelectorAll('.animated-bg-text')
+const messages = [
+    'Message 1',
+    'Message 2',
+    'Message 3',
+    'Message 4',
+]
 
-setTimeout(getData, 2500)
+const types = ['info', 'success', 'error']
 
-function getData() {
-    header.innerHTML = '<img src="dev-renoi.jpg" alt="image du setup de developpeur.">'
-    title.innerHTML = 'Lorem ipsum dolor sit amet.'
-    excerpt.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, necessitatibus?'
-    profile_img.innerHTML = '<img src="https://randomuser.me/api/portraits/women/90.jpg" alt="">'
-    name.innerHTML = 'Suzanne A'
-    date.innerHTML = '12 mars 2023'
+button.addEventListener('click', () => createNotification())
 
-    animated_bgs.forEach(bg => bg.classList.remove('animated-bg'))
-    animated_bg_texts.forEach(bg => bg.classList.remove('animated-bg-text'))
+function createNotification(message = null, type = null) {
+    const notif = document.createElement('div')
+    notif.classList.add('toast')
+    notif.classList.add(type ? type : getRandomType())
+
+    notif.innerText = message ? message : getRandomMessage()
+
+    toasts.appendChild(notif)
+
+    setTimeout(() => {
+        notif.remove()
+    }, 3000)
+}
+
+function getRandomMessage() {
+    return messages[Math.floor(Math.random() * messages.length)]
+}
+
+function getRandomType() {
+    return types[Math.floor(Math.random() * types.length)]
 }
