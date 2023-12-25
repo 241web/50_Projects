@@ -4,33 +4,16 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
         <link rel="stylesheet" href="style.css"/>
-        <title>Carte de présentation</title>
+        <title>Profiles Github</title>
     </head>
     <body>
-        <div class="card">
-            <div class="card-header animated-bg" id="header">
-                &nbsp;
-            </div>
+        <form class="user-form" id="form">
+            <input type="text" id="search" placeholder="Nom d'utilisateur GitHub..." required/>
+        </form>
 
-            <div class="card-content">
-                <h3 class="crd-title animated-bg animated-bg-text" id="title">&nbsp;</h3>
-                <p class="card-excerpt" id="excerpt">&nbsp;
-                    <span class="animated-bg animated-bg-text">&nbsp;</span>
-                    <span class="animated-bg animated-bg-text">&nbsp;</span>
-                    <span class="animated-bg animated-bg-text">&nbsp;</span>
-                </p>
-                <div class="author">
-                    <div class="profil-img animated-bg" id="profile_img">
-                        &nbsp;
-                    </div>
-                    <div class="author-info">
-                        <strong class="animated-bg animated-bg-text" id="name">&nbsp;</strong>
-                        <small class="animated-bg animated-bg-text" id="date">&nbsp;</small>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <main id="main"></main>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script src="script.js"></script>
     </body>

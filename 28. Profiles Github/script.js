@@ -1,23 +1,88 @@
-const header = document.getElementById('header')
-const title = document.getElementById('title')
-const excerpt= document.getElementById('excerpt')
-const profile_img = document.getElementById('profile_img')
-const name = document.getElementById('name')
-const date = document.getElementById('date')
+const APIURL = 'https://api.github.com/users/'
 
-const animated_bgs = document.querySelectorAll('.animated-bg')
-const animated_bg_texts = document.querySelectorAll('.animated-bg-text')
+const main = document.getElementById('main')
+const form = document.getElementById('form')
+const search = document.getElementById('search')
 
-setTimeout(getData, 2500)
-
-function getData() {
-    header.innerHTML = '<img src="dev-renoi.jpg" alt="image du setup de developpeur.">'
-    title.innerHTML = 'Lorem ipsum dolor sit amet.'
-    excerpt.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, necessitatibus?'
-    profile_img.innerHTML = '<img src="https://randomuser.me/api/portraits/women/90.jpg" alt="">'
-    name.innerHTML = 'Suzanne A'
-    date.innerHTML = '12 mars 2023'
-
-    animated_bgs.forEach(bg => bg.classList.remove('animated-bg'))
-    animated_bg_texts.forEach(bg => bg.classList.remove('animated-bg-text'))
+async function getUser(username) {
+    try{
+        const { data } = await axios(APIURL + username)
+    
+        createUserCard(data)
+        getRepos(username)
+    } catch(err) {
+        if(err.response.status == 404) {
+            createErrorCard('Aucun profil sous ce nom')
+        }
+    }
 }
+
+async function getRepos(username) {
+    try{
+        const { data } = await axios(APIURL + username + '/repos?sort=created')
+    
+        addReposToCard(data)
+    } catch(err) {
+        createErrorCard('Récupération de Repos impossible')
+    }
+}
+
+function createUserCard(user) {
+    const cardHTML = `  
+    <div class="card">
+        <div>
+            <img src="${user.avatar_url}" alt="${user.name}" class="avatar">
+        </div>
+        <div class="user-info">
+            <h2>${user.name}</h2>
+            <p>${user.bio}</p>
+            <ul>
+                <li>${user.followers}<strong>Abonnés</strong></li>
+                <li>${user.following}<strong>Abonnements</strong></li>
+                <li>${user.public_repos}<strong>Repos</strong></li>
+            </ul>
+
+            <div id="repos"></div>
+        </div>
+    </div>
+    `
+    main.innerHTML = cardHTML
+}
+
+function createErrorCard(msg) {
+    const cardHTML = `
+        <div class = "card">
+            <h1>${msg}</h1>
+        </div>
+    `
+
+    main.innerHTML = cardHTML
+}
+
+function addReposToCard(repos) {
+    const reposEl = document.getElementById('repos')
+
+    repos
+        .slice(0, 10)
+        .forEach(repo => {
+            const reposEl = document.createElement('a')
+            reposEl.classList.add('repo')
+            reposEl.href = repo.html_url
+            reposEl.target = '_blank'
+            reposEl.innerText = repo.name
+
+            reposEl.appendChild(repoEl)
+        })
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const user = search.value
+
+    if(user) {
+        getUser(user)
+
+        search.value = ''
+    }
+})
