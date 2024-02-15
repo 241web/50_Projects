@@ -65,13 +65,13 @@ function addReposToCard(repos) {
     repos
         .slice(0, 10)
         .forEach(repo => {
-            const reposEl = document.createElement('a')
-            reposEl.classList.add('repo')
-            reposEl.href = repo.html_url
-            reposEl.target = '_blank'
-            reposEl.innerText = repo.name
+            const repoEl = document.createElement('a')
+            repoEl.classList.add('repo')
+            repoEl.href = repo.html_url
+            repoEl.target = '_blank'
+            repoEl.innerText = repo.name
 
-            reposEl.appendChild(repoEl)
+            repoEl.appendChild(repoEl)
         })
 }
 
