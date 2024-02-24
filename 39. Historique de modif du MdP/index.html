@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Hoverboard</title>
+    <!-- Sur ce projet, on utilise "Tailwind" un framewok de CSS et un "cdn" pour JS, d'où les liens ci-dessous-->
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.11/tailwind.min.css" 
+        integrity="sha512-KO1h5ynYuqsFuEicc7DmOQc+S9m2xiCKYlC3zcZCSEw0RGDsxcMnppRaMZnb0DdzTDPaW22ID/gAGCZ9i+RT/w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" 
+    />
+    <link rel="stylesheet" href="style.css"/>
+    <title>Force du mot passe en arrière-plan</title>
 </head>
 <body>
-    <h1>Créer un nouveau projet</h1>
+    <div class="background" id="background"></div>
+    <div class="bg-white rounded p-10 text-center shadow-md">
+        <h1 class="text-3xl">Image Password Strength</h1>
+        <p class="text-sm text-gray-700">Changer le mot de passe pour voir l'effet.</p>
+        <div class="my-4 text-left">
+            <label for="email" class="text-gray-900">Email:</label>
+            <input 
+                type="text" 
+                class="border block w-full p-2 mt-2 rounded" 
+                id="email"  
+                placeholder="exemple@gmail.com"
+            />
+        </div>
+
+        <div class="my-4 text-left">
+            <label for="password" class="text-gray-900">Mot de passe:</label>
+            <input 
+                type="text" 
+                class="border block w-full p-2 mt-2 rounded" 
+                id="password"  
+                placeholder="Entrer le mot de passe"
+            />
+        </div>
+
+        <button class="bg-black text-white py-2 mt-4 inline-block w-full rounded" type="submit">Soumettre</button>
+    </div>
     <script scr="script.js"></script>
 </body>
 </html>
