@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Hoverboard</title>
+    <title>Filtre Utilisateurs live</title>
 </head>
 <body>
-    <h1>Créer un nouveau projet</h1>
+    <div class="container">
+        <header class="header">
+            <h4 class="title">Filtre d'utilisateurs en direct</h4>
+            <small class="subtitle">Recherche par nom et/ou localisation</small>
+            <input type="text" id="filter"  placeholder="Rechercher" />
+        </header>
+
+        <ul id="result" class="user-list">
+            <li>
+                <h3>Chargement...</h3>
+            </li>
+        </ul>
+    </div>
     <script scr="script.js"></script>
 </body>
 </html>
